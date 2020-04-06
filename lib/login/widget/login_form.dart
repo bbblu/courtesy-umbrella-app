@@ -1,7 +1,10 @@
+import 'package:courtesy_umbrella/common/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/bloc.dart';
+import 'login_button.dart';
+import 'login_text_field.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -37,43 +40,62 @@ class _LoginFormState extends State<LoginForm> {
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
           return Form(
-            child: Container(
-              margin: EdgeInsets.all(32.0),
-              child: Column(
-                children: <Widget>[
-                  TextFormField(
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.person),
-                      labelText: 'username',
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 80.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Logo(size: 64.0),
+                    SizedBox(width: 20.0),
+                    Text(
+                      'Umbrella',
+                      style: TextStyle(
+                        fontSize: 35.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(height: 80.0),
+                LoginTextField(
+                  prefixIcon: Icon(Icons.person),
+                  hintText: 'username',
+                  controller: _usernameController,
+                ),
+                SizedBox(height: 32.0),
+                LoginTextField(
+                  prefixIcon: Icon(Icons.lock),
+                  hintText: 'password',
+                  controller: _passwordController,
+                ),
+                SizedBox(height: 128.0),
+                LoginFlatButton(
+                  onPressed:
+                      state is! LoginLoading ? _onLoginButtonPressed : null,
+                  text: 'LOGIN',
+                ),
+                Row(
+                  children: <Widget>[
+                    LoginTextButton(
+                      onPressed: null,
+                      text: '忘記密碼',
                     ),
-                    controller: _usernameController,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(16.0),
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.lock),
-                      labelText: 'password',
+                    Expanded(
+                      child: SizedBox(),
                     ),
-                    controller: _passwordController,
-                    obscureText: true,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(70.0),
-                  ),
-                  RaisedButton(
-                    onPressed:
-                        state is! LoginLoading ? _onLoginButtonPressed : null,
-                    child: Text('Login'),
-                  ),
-                  Container(
-                    child: state is LoginLoading
-                        ? CircularProgressIndicator()
-                        : null,
-                  ),
-                ],
-              ),
+                    LoginTextButton(
+                      onPressed: null,
+                      text: '尚未註冊',
+                    ),
+                  ],
+                ),
+                Container(
+                  child: state is LoginLoading
+                      ? CircularProgressIndicator()
+                      : null,
+                ),
+              ],
             ),
           );
         },

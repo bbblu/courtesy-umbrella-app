@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../auth/bloc/bloc.dart';
 import '../auth/user_repository.dart';
 import 'bloc/bloc.dart';
-import 'widget/login_form.dart';
+import 'widget/widget.dart';
 
 class LoginPage extends StatelessWidget {
   final UserRepository userRepository;
@@ -16,9 +16,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Login'),
-      ),
+      resizeToAvoidBottomPadding: false,
       body: BlocProvider(
         create: (context) {
           return LoginBloc(
@@ -26,7 +24,20 @@ class LoginPage extends StatelessWidget {
             userRepository: userRepository,
           );
         },
-        child: LoginForm(),
+        child: Container(
+          height: double.infinity,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/login-background.png'),
+              fit: BoxFit.fitWidth,
+              alignment: Alignment.bottomCenter,
+            ),
+          ),
+          child: Container(
+            margin: EdgeInsets.all(32.0),
+            child: LoginForm(),
+          ),
+        ),
       ),
     );
   }
