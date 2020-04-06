@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
-import 'auth/bloc/auth_bloc.dart';
-import 'auth/bloc/auth_event.dart';
 import 'auth/bloc/bloc.dart';
 import 'auth/user_repository.dart';
 import 'common/loading_indicator.dart';
@@ -11,6 +9,7 @@ import 'home/home_page.dart';
 import 'login/login_page.dart';
 import 'splash/splash_page.dart';
 import 'utils/simple_bloc_delegate.dart';
+import 'utils/theme.dart';
 
 void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
@@ -33,10 +32,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Bloc Tutorial',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: theme,
+      darkTheme: darkTheme,
       home: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
           if (state is AuthUninitialized) {
