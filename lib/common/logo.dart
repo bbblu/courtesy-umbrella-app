@@ -1,30 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:meta/meta.dart';
-
-import '../utils/color_scheme.dart';
 
 class Logo extends StatelessWidget {
   final double size;
+  final Color color;
 
-  Logo({Key key, @required this.size}) : super(key: key);
+  Logo({Key key, @required this.size, this.color = Colors.white})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SvgPicture.asset(
+      'assets/images/logo.svg',
       width: size,
       height: size,
-      decoration: BoxDecoration(
-        color: MyColorScheme.primary1,
-        borderRadius: BorderRadius.all(
-          Radius.circular(size / 4),
-        ),
-      ),
-      child: Container(
-        margin: EdgeInsets.all(size / 10),
-        child: Image.asset(
-          'assets/images/logo.png',
-        ),
-      ),
+      color: color,
     );
   }
 }
