@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-class LoginTextField extends StatelessWidget {
+class MyTextFormField extends StatelessWidget {
   final Icon prefixIcon;
   final String hintText;
   final TextEditingController controller;
+  final bool obscureText;
 
-  LoginTextField({
+  MyTextFormField({
     Key key,
     @required this.prefixIcon,
     @required this.hintText,
     @required this.controller,
+    this.obscureText = false,
   }) : super(key: key);
 
   @override
@@ -31,8 +33,16 @@ class LoginTextField extends StatelessWidget {
           ),
         ),
       ),
+      obscureText: obscureText,
       controller: controller,
-      obscureText: true,
+      textInputAction: TextInputAction.next,
+      onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
+      validator: (value) {
+        if (value.isEmpty) {
+          return '這個欄位不能是空的';
+        }
+        return null;
+      },
     );
   }
 }

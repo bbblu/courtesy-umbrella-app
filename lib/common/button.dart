@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/color_scheme.dart';
+import '../resources/resources.dart';
 
-class LoginFlatButton extends StatelessWidget {
+class MyFlatButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
 
-  LoginFlatButton({
+  MyFlatButton({
     Key key,
     @required this.onPressed,
     @required this.text,
@@ -21,26 +21,27 @@ class LoginFlatButton extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            fontSize: 20.0,
+            fontSize: 24.0,
             fontWeight: FontWeight.bold,
           ),
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50.0),
         ),
-        padding: EdgeInsets.symmetric(vertical: 10.0),
-        color: MyColorScheme.primary2,
+        padding: EdgeInsets.symmetric(vertical: 7.0),
+        color: MyColors.primary2,
+        disabledColor: Colors.grey,
         textColor: Colors.white,
       ),
     );
   }
 }
 
-class LoginTextButton extends StatelessWidget {
+class MyTextButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
 
-  LoginTextButton({
+  MyTextButton({
     Key key,
     @required this.onPressed,
     @required this.text,
@@ -51,7 +52,7 @@ class LoginTextButton extends StatelessWidget {
     return FlatButton(
       child: Text(
         text,
-        style: TextStyle(color: Colors.blue),
+        style: TextStyle(color: Colors.blueAccent),
       ),
       onPressed: onPressed,
     );
