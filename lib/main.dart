@@ -7,9 +7,9 @@ import 'auth/user_repository.dart';
 import 'common/loading_indicator.dart';
 import 'home/home_page.dart';
 import 'login/login_page.dart';
+import 'resources/resources.dart';
 import 'splash/splash_page.dart';
 import 'utils/simple_bloc_delegate.dart';
-import 'utils/theme.dart';
 
 void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
@@ -36,6 +36,10 @@ class App extends StatelessWidget {
       darkTheme: darkTheme,
       home: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
+          screenWidth = MediaQuery.of(context).size.width;
+          screenHeight = MediaQuery.of(context).size.width;
+          appBrightness = MediaQuery.of(context).platformBrightness;
+
           if (state is AuthUninitialized) {
             return SplashPage();
           }

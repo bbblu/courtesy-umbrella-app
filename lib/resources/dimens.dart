@@ -1,0 +1,2 @@
+double screenWidth;
+double screenHeight;
