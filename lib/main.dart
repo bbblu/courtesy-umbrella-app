@@ -37,7 +37,7 @@ class App extends StatelessWidget {
       home: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
           screenWidth = MediaQuery.of(context).size.width;
-          screenHeight = MediaQuery.of(context).size.width;
+          screenHeight = MediaQuery.of(context).size.height;
           appBrightness = MediaQuery.of(context).platformBrightness;
 
           if (state is AuthUninitialized) {

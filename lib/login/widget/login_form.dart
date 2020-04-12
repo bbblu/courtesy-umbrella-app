@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../common/button.dart';
 import '../../common/text_field.dart';
-import '../../common/title_text.dart';
 import '../bloc/bloc.dart';
 
 class LoginForm extends StatefulWidget {
@@ -46,51 +45,27 @@ class _LoginFormState extends State<LoginForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                MyTitleText(text: '登入'),
-                Expanded(
-                  child: SizedBox(),
+                SizedBox(
+                  height: 85.0,
+                  child: MyTextFormField(
+                    prefixIcon: Icon(Icons.person),
+                    hintText: 'account',
+                    controller: _usernameController,
+                  ),
                 ),
-                MyTextFormField(
-                  prefixIcon: Icon(Icons.person),
-                  hintText: 'account',
-                  controller: _usernameController,
-                ),
-                Expanded(
-                  child: SizedBox(),
-                ),
-                MyTextFormField(
-                  prefixIcon: Icon(Icons.lock),
-                  hintText: 'password',
-                  controller: _passwordController,
-                  obscureText: true,
-                ),
-                Expanded(
-                  child: SizedBox(),
-                  flex: 2,
+                SizedBox(
+                  height: 105.0,
+                  child: MyTextFormField(
+                    prefixIcon: Icon(Icons.lock),
+                    hintText: 'password',
+                    controller: _passwordController,
+                    obscureText: true,
+                  ),
                 ),
                 MyFlatButton(
                   onPressed:
                       state is! LoginLoading ? _onLoginButtonPressed : null,
                   text: '登入',
-                ),
-                Row(
-                  children: <Widget>[
-                    MyTextButton(
-                      onPressed: null,
-                      text: '忘記密碼',
-                    ),
-                    Expanded(
-                      child: SizedBox(),
-                    ),
-                    MyTextButton(
-                      onPressed: null,
-                      text: '尚未註冊',
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: SizedBox(),
-                  flex: 3,
                 ),
                 Container(
                   child: state is LoginLoading

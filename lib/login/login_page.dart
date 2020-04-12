@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../auth/bloc/bloc.dart';
 import '../auth/user_repository.dart';
+import '../common/button.dart';
 import '../common/logo.dart';
+import '../common/title_text.dart';
 import '../resources/resources.dart';
 import 'bloc/bloc.dart';
 import 'widget/widget.dart';
@@ -36,11 +38,36 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             SingleChildScrollView(
+              padding: EdgeInsets.symmetric(horizontal: 32.0),
               child: Container(
                 height: screenHeight,
-                margin:
-                    EdgeInsets.fromLTRB(32.0, screenWidth / 1.5, 32.0, 32.0),
-                child: LoginForm(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                        height: screenHeight > 600
+                            ? screenWidth / 1.5
+                            : screenWidth / 2),
+                    MyTitleText(text: '登入'),
+                    SizedBox(
+                      height: 30.0,
+                    ),
+                    LoginForm(),
+                    Row(
+                      children: <Widget>[
+                        MyTextButton(
+                          onPressed: null,
+                          text: '忘記密碼',
+                        ),
+                        Spacer(),
+                        MyTextButton(
+                          onPressed: null,
+                          text: '尚未註冊',
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
