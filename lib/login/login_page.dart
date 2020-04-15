@@ -1,3 +1,4 @@
+import 'package:courtesy_umbrella/sign_up/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -61,7 +62,12 @@ class LoginPage extends StatelessWidget {
                         ),
                         Spacer(),
                         MyTextButton(
-                          onPressed: null,
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignUpPage(),
+                            ),
+                          ),
                           text: '尚未註冊',
                         ),
                       ],
