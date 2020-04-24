@@ -1,3 +1,4 @@
+import 'package:courtesy_umbrella/login/bloc/login_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -39,6 +40,8 @@ class _LoginFormState extends State<LoginForm> {
       },
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
+          final LoginValidator validator = LoginValidator();
+
           return Form(
             autovalidate: true,
             key: _formKey,
@@ -50,7 +53,8 @@ class _LoginFormState extends State<LoginForm> {
                   child: MyTextFormField(
                     prefixIcon: Icon(Icons.person),
                     hintText: 'account',
-                    controller: _usernameController,
+                    stream: validator.username,
+                    onChanged: validator.changeUsername,
                   ),
                 ),
                 SizedBox(
@@ -58,7 +62,8 @@ class _LoginFormState extends State<LoginForm> {
                   child: MyTextFormField(
                     prefixIcon: Icon(Icons.lock),
                     hintText: 'password',
-                    controller: _passwordController,
+                    stream: validator.password,
+                    onChanged: validator.changePassword,
                     obscureText: true,
                   ),
                 ),
@@ -66,6 +71,7 @@ class _LoginFormState extends State<LoginForm> {
                   onPressed:
                       state is! LoginLoading ? _onLoginButtonPressed : null,
                   text: '登入',
+                  stream: validator.submitValid,
                 ),
                 Container(
                   child: state is LoginLoading

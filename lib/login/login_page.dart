@@ -1,4 +1,3 @@
-import 'package:courtesy_umbrella/sign_up/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,6 +7,7 @@ import '../common/button.dart';
 import '../common/logo.dart';
 import '../common/title_text.dart';
 import '../resources/resources.dart';
+import '../sign_up/sign_up_page.dart';
 import 'bloc/bloc.dart';
 import 'widget/widget.dart';
 

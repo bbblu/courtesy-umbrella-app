@@ -17,27 +17,22 @@ class SignUpForm extends StatelessWidget {
           MyTextFormField(
             prefixIcon: Icon(Icons.person),
             hintText: 'account',
-            controller: null,
           ),
           MyTextFormField(
             prefixIcon: Icon(Icons.lock),
             hintText: 'password',
-            controller: null,
           ),
           MyTextFormField(
             prefixIcon: Icon(Icons.lock),
             hintText: 'password again',
-            controller: null,
           ),
           MyTextFormField(
             prefixIcon: Icon(Icons.email),
             hintText: 'email',
-            controller: null,
           ),
           MyTextFormField(
             prefixIcon: Icon(Icons.cake),
             hintText: 'birthday',
-            controller: null,
           ),
           SizedBox(
             height: 100.0,
