@@ -1,7 +1,7 @@
-import 'package:courtesy_umbrella/common/button.dart';
-import 'package:courtesy_umbrella/common/text_field.dart';
-import 'package:courtesy_umbrella/common/title_text.dart';
 import 'package:flutter/material.dart';
+
+import '../../common/button.dart';
+import '../../common/text_field.dart';
 
 class SignUpForm extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();

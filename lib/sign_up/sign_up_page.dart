@@ -1,8 +1,8 @@
-import 'package:courtesy_umbrella/common/button.dart';
-import 'package:courtesy_umbrella/common/text_field.dart';
-import 'package:courtesy_umbrella/common/title_text.dart';
-import 'package:courtesy_umbrella/sign_up/widget/sign_up_form.dart';
 import 'package:flutter/material.dart';
+
+import '../common/button.dart';
+import '../common/title_text.dart';
+import '../sign_up/widget/sign_up_form.dart';
 
 class SignUpPage extends StatelessWidget {
   @override
