@@ -13,7 +13,6 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,46 +38,41 @@ class _LoginFormState extends State<LoginForm> {
       },
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
-          final LoginValidator validator = LoginValidator();
+          final validator = LoginValidator.instance;
 
-          return Form(
-            autovalidate: true,
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(
-                  height: 85.0,
-                  child: MyTextFormField(
-                    prefixIcon: Icon(Icons.person),
-                    hintText: 'account',
-                    stream: validator.username,
-                    onChanged: validator.changeUsername,
-                  ),
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(
+                height: 85.0,
+                child: MyTextFormField(
+                  prefixIcon: Icon(Icons.person),
+                  hintText: 'account',
+                  stream: validator.username,
+                  onChanged: validator.changeUsername,
                 ),
-                SizedBox(
-                  height: 105.0,
-                  child: MyTextFormField(
-                    prefixIcon: Icon(Icons.lock),
-                    hintText: 'password',
-                    stream: validator.password,
-                    onChanged: validator.changePassword,
-                    obscureText: true,
-                  ),
+              ),
+              SizedBox(
+                height: 105.0,
+                child: MyTextFormField(
+                  prefixIcon: Icon(Icons.lock),
+                  hintText: 'password',
+                  stream: validator.password,
+                  onChanged: validator.changePassword,
+                  obscureText: true,
                 ),
-                MyFlatButton(
-                  onPressed:
-                      state is! LoginLoading ? _onLoginButtonPressed : null,
-                  text: '登入',
-                  stream: validator.submitValid,
-                ),
-                Container(
-                  child: state is LoginLoading
-                      ? CircularProgressIndicator()
-                      : null,
-                ),
-              ],
-            ),
+              ),
+              MyFlatButton(
+                onPressed:
+                    state is! LoginLoading ? _onLoginButtonPressed : null,
+                text: '登入',
+                stream: validator.submitValid,
+              ),
+              Container(
+                child:
+                    state is LoginLoading ? CircularProgressIndicator() : null,
+              ),
+            ],
           );
         },
       ),

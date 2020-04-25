@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 
 class LoginValidator {
+  static final instance = LoginValidator();
+
   final _usernameController = BehaviorSubject<String>();
   final _passwordController = BehaviorSubject<String>();
 
