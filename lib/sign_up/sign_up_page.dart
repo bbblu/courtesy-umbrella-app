@@ -22,7 +22,9 @@ class SignUpPage extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: MyTextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context, true);
+                  },
                   text: '已擁有帳戶',
                 ),
               ),
