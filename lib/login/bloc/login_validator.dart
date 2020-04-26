@@ -4,6 +4,7 @@ import 'package:rxdart/rxdart.dart';
 
 class LoginValidator {
   static final instance = LoginValidator();
+  static final regex = RegExp(r'^[a-zA-Z0-9]+$');
 
   final _usernameController = BehaviorSubject<String>();
   final _passwordController = BehaviorSubject<String>();
@@ -25,20 +26,32 @@ class LoginValidator {
 
   final validateUsername = StreamTransformer<String, String>.fromHandlers(
       handleData: (username, sink) {
-    if (username.isNotEmpty) {
-      sink.add(username);
-    } else {
+    if (username.isEmpty) {
       sink.addError('帳號不能是空的');
+      return;
     }
+
+    if (!regex.hasMatch(username)) {
+      sink.addError('帳號不能含有特殊字元');
+      return;
+    }
+
+    sink.add(username);
   });
 
   final validatePassword = StreamTransformer<String, String>.fromHandlers(
       handleData: (password, sink) {
-    if (password.length >= 5) {
-      sink.add(password);
-    } else {
-      sink.addError('密碼至少要五個字以上');
+    if (password.length < 4) {
+      sink.addError('密碼不能少於4個字');
+      return;
     }
+
+    if (!regex.hasMatch(password)) {
+      sink.addError('密碼不能含有特殊字元');
+      return;
+    }
+
+    sink.add(password);
   });
 
   void submit() {

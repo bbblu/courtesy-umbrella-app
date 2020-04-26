@@ -14,23 +14,25 @@ class SignUpForm extends StatelessWidget {
       child: Wrap(
         runSpacing: 32.0,
         children: <Widget>[
-          MyTextFormField(
+          MyTextField(
             prefixIcon: Icon(Icons.person),
             hintText: 'account',
           ),
-          MyTextFormField(
+          MyTextField(
             prefixIcon: Icon(Icons.lock),
             hintText: 'password',
+            isPassword: true,
           ),
-          MyTextFormField(
+          MyTextField(
             prefixIcon: Icon(Icons.lock),
             hintText: 'password again',
+            isPassword: true,
           ),
-          MyTextFormField(
+          MyTextField(
             prefixIcon: Icon(Icons.email),
             hintText: 'email',
           ),
-          MyTextFormField(
+          MyTextField(
             prefixIcon: Icon(Icons.cake),
             hintText: 'birthday',
           ),

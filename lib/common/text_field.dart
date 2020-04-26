@@ -1,31 +1,58 @@
 import 'package:flutter/material.dart';
 
-class MyTextFormField extends StatelessWidget {
+class MyTextField extends StatefulWidget {
   final Icon prefixIcon;
   final String hintText;
   final Stream<String> stream;
   final Function(String) onChanged;
-  final bool obscureText;
+  final bool isPassword;
 
-  MyTextFormField({
+  MyTextField({
     Key key,
     @required this.prefixIcon,
     @required this.hintText,
     @required this.stream,
     @required this.onChanged,
-    this.obscureText = false,
+    this.isPassword = false,
   }) : super(key: key);
+
+  @override
+  _MyTextFieldState createState() => _MyTextFieldState();
+}
+
+class _MyTextFieldState extends State<MyTextField> {
+  bool _obscureText;
+
+  void _onVisibilityButtonPressed() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _obscureText = widget.isPassword;
+  }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: stream,
+      stream: widget.stream,
       builder: (context, snapshot) {
         return TextField(
           decoration: InputDecoration(
-            prefixIcon: prefixIcon,
-            hintText: hintText,
+            prefixIcon: widget.prefixIcon,
+            hintText: widget.hintText,
             errorText: snapshot.error,
+            suffixIcon: widget.isPassword
+                ? FlatButton(
+                    onPressed: _onVisibilityButtonPressed,
+                    child: Icon(
+                      _obscureText ? Icons.visibility : Icons.visibility_off,
+                    ),
+                  )
+                : null,
             contentPadding: EdgeInsets.symmetric(vertical: 10.0),
             filled: true,
             fillColor: Colors.grey[300].withOpacity(0.5),
@@ -39,8 +66,8 @@ class MyTextFormField extends StatelessWidget {
               ),
             ),
           ),
-          obscureText: obscureText,
-          onChanged: onChanged,
+          onChanged: widget.onChanged,
+          obscureText: _obscureText,
         );
       },
     );

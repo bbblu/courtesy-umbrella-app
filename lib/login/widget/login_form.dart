@@ -13,6 +13,13 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final validator = LoginValidator.instance;
+
+  @override
+  void dispose() {
+    super.dispose();
+    validator.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +45,12 @@ class _LoginFormState extends State<LoginForm> {
       },
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
-          final validator = LoginValidator.instance;
-
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(
                 height: 85.0,
-                child: MyTextFormField(
+                child: MyTextField(
                   prefixIcon: Icon(Icons.person),
                   hintText: 'account',
                   stream: validator.username,
@@ -54,12 +59,12 @@ class _LoginFormState extends State<LoginForm> {
               ),
               SizedBox(
                 height: 105.0,
-                child: MyTextFormField(
+                child: MyTextField(
                   prefixIcon: Icon(Icons.lock),
                   hintText: 'password',
                   stream: validator.password,
                   onChanged: validator.changePassword,
-                  obscureText: true,
+                  isPassword: true,
                 ),
               ),
               MyFlatButton(
