@@ -54,11 +54,11 @@ class LoginValidator {
     sink.add(password);
   });
 
-  void submit() {
+  List submit() {
     final validUsername = _usernameController.value;
     final validPassword = _passwordController.value;
 
-    print('Username is $validUsername, and password is $validPassword');
+    return [validUsername, validPassword];
   }
 
   void dispose() {

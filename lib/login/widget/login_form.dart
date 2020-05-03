@@ -11,8 +11,6 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  final _usernameController = TextEditingController();
-  final _passwordController = TextEditingController();
   final validator = LoginValidator.instance;
 
   @override
@@ -26,8 +24,8 @@ class _LoginFormState extends State<LoginForm> {
     void _onLoginButtonPressed() {
       BlocProvider.of<LoginBloc>(context).add(
         LoginButtonPressed(
-          username: _usernameController.text,
-          password: _passwordController.text,
+          username: validator.submit()[0],
+          password: validator.submit()[1],
         ),
       );
     }
