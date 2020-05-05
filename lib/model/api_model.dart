@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+import '../model/token.dart';
 import 'user.dart';
 
 /* {
@@ -60,6 +61,8 @@ class ApiModel<T> extends Equatable {
     }
 
     switch (T) {
+      case Token:
+        return Token.fromJson(json) as T;
       case User:
         return User.fromJson(json) as T;
     }

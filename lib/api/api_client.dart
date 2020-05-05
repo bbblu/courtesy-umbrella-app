@@ -10,6 +10,11 @@ class ApiClient {
   final _httpClient = http.Client();
   final _retryTimes = 3;
   final _retryDelay = Duration(seconds: 5);
+  String _token;
+
+  set token(String newValue) {
+    _token = newValue;
+  }
 
   Future<http.Response> retry(Future<http.Response> Function() fn) async {
     int index = this._retryTimes;
@@ -29,7 +34,10 @@ class ApiClient {
     print('''-----> [GET] Api Request <-----
           url: $_baseUrl$url
           header:''');
-    final request = this._httpClient.get('$_baseUrl$url');
+    final request = this._httpClient.get(
+      '$_baseUrl$url',
+      headers: {'X-Auth-Token': _token},
+    );
     final response = await retry(() => request);
     final json = jsonDecode(response.body);
     print('''-----> [GET] Api Response <-----
@@ -44,12 +52,20 @@ class ApiClient {
           url: $_baseUrl$url
           header:
           body: $body''');
-    final request = this._httpClient.post('$_baseUrl$url', body: body);
+    final request = this._httpClient.post(
+          '$_baseUrl$url',
+          headers: {'X-Auth-Token': _token},
+          body: body,
+        );
     final response = await retry(() => request);
     final json = jsonDecode(response.body);
     print('''-----> [POST] Api Response <-----
           header: ${response.headers}
           body: $json''');
+
+    if (url == '/login') {
+      json['data'] = {'token': response.headers['x-auth-token']};
+    }
 
     return ApiModel<T>.fromJson(json);
   }
