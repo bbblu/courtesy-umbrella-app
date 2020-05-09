@@ -1,31 +1,44 @@
 import 'package:meta/meta.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../api/api_client.dart';
+import '../model/token.dart';
 
 class UserRepository {
   Future<String> authenticate({
     @required String username,
     @required String password,
   }) async {
-    await Future.delayed(Duration(seconds: 1));
+    final response = await ApiClient.instance.post<Token>('/login', body: {
+      'account': username,
+      'password': password,
+    });
 
-    return 'token';
+    return (response.data as Token).token;
   }
 
-  Future<void> persistToken(String token) async {
+  Future<String> persistToken(String token) async {
     /// write to keystore/keychain
-    await Future.delayed(Duration(seconds: 1));
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('token', token);
+    return token;
+  }
+
+  Future<String> getToken() async {
+    /// read from keystore/keychain
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('token');
   }
 
   Future<bool> hasToken() async {
-    /// read from keystore/keychain
-    await Future.delayed(Duration(seconds: 1));
-
-    return false;
+    /// check keystore/keychain is exist
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('token') != null;
   }
 
   Future<void> deleteToken() async {
     /// delete from keystore/keychain
-    await Future.delayed(Duration(seconds: 1));
-
-    return;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('token');
   }
 }

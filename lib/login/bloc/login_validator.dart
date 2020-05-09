@@ -17,7 +17,7 @@ class LoginValidator {
       _passwordController.stream.transform(validatePassword);
 
   Stream<bool> get submitValid =>
-      Rx.combineLatest2(username, password, (e, p) => true);
+      Rx.combineLatest2(username, password, (u, p) => true);
 
   // change data
   Function(String) get changeUsername => _usernameController.sink.add;
