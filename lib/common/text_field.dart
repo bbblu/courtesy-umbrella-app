@@ -5,15 +5,19 @@ class MyTextField extends StatefulWidget {
   final String hintText;
   final Stream<String> stream;
   final Function(String) onChanged;
+  final bool isReadOnly;
   final bool isPassword;
+  final TextEditingController controller;
 
   MyTextField({
     Key key,
     @required this.prefixIcon,
     @required this.hintText,
     @required this.stream,
-    @required this.onChanged,
+    this.onChanged,
+    this.isReadOnly = false,
     this.isPassword = false,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -67,7 +71,9 @@ class _MyTextFieldState extends State<MyTextField> {
             ),
           ),
           onChanged: widget.onChanged,
+          readOnly: widget.isReadOnly,
           obscureText: _obscureText,
+          controller: widget.controller,
         );
       },
     );

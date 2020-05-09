@@ -7,6 +7,7 @@ import '../common/button.dart';
 import '../common/logo.dart';
 import '../common/title_text.dart';
 import '../resources/resources.dart';
+import '../sign_up/bloc/bloc.dart';
 import '../sign_up/sign_up_page.dart';
 import 'bloc/bloc.dart';
 import 'widget/widget.dart';
@@ -65,7 +66,10 @@ class LoginPage extends StatelessWidget {
                           onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SignUpPage(),
+                              builder: (context) => BlocProvider(
+                                create: (context) => SignUpBloc(),
+                                child: SignUpPage(),
+                              ),
                             ),
                           ),
                           text: '尚未註冊',
