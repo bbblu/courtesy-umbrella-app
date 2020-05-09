@@ -44,6 +44,9 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
           );
         }
+        if (state is SignUpInitial) {
+          Navigator.pop(context);
+        }
       },
       child: BlocBuilder<SignUpBloc, SignUpState>(
         builder: (context, state) {
@@ -101,6 +104,10 @@ class _SignUpFormState extends State<SignUpForm> {
                     state is! SignUpLoading ? _onSignUpButtonPressed : null,
                 text: '註冊',
                 stream: validator.submitValid,
+              ),
+              Container(
+                child:
+                    state is SignUpLoading ? CircularProgressIndicator() : null,
               ),
             ],
           );

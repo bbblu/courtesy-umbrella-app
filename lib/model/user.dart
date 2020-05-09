@@ -29,4 +29,11 @@ class User extends Equatable {
       birthday: json['birthday'],
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'account': account,
+        'password': password,
+        'email': email,
+        'birthday': birthday,
+      };
 }

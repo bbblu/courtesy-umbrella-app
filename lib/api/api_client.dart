@@ -12,13 +12,33 @@ class ApiClient {
   final _retryTimes = 3;
   final _retryDelay = Duration(seconds: 5);
 
+  Future<Map<String, String>> _getHeaders() async {
+    return {
+      'content-type': 'application/json',
+      'x-auth-token': await UserRepository().getToken(),
+    };
+  }
+
+  void _printLog(http.Response response, {Map<String, dynamic> body}) async {
+    final request = response.request;
+    print('''-----> [${request.method}] API Request <-----
+    url: ${request.url}
+    headers: ${request.headers}
+    body: $body''');
+
+    print('''-----> [${request.method}] API Response <-----
+    status: ${response.statusCode}
+    headers: ${response.headers}
+    body: ${response.body}''');
+  }
+
   Future<http.Response> retry(Future<http.Response> Function() fn) async {
     int index = this._retryTimes;
     while (index > 0) {
       try {
         return await fn();
       } catch (e) {
-        print("第 $index 次重試");
+        print("第 ${this._retryTimes - index + 1} 次重試");
       }
       await Future.delayed(this._retryDelay);
       index--;
@@ -27,44 +47,33 @@ class ApiClient {
   }
 
   Future<ApiModel> get<T>(String url) async {
-    final token = await UserRepository().getToken();
-    print('''-----> [GET] Api Request <-----
-          url: $_baseUrl$url
-          header:''');
     final request = this._httpClient.get(
-      '$_baseUrl$url',
-      headers: {'X-Auth-Token': token},
-    );
-    final response = await retry(() => request);
-    final json = jsonDecode(response.body);
-    print('''-----> [GET] Api Response <-----
-          header: ${response.headers}
-          body: $json''');
+          '$_baseUrl$url',
+          headers: await this._getHeaders(),
+        );
 
-    return ApiModel<T>.fromJson(json);
+    final response = await retry(() => request);
+    final responseBody = jsonDecode(response.body);
+    this._printLog(response);
+
+    return ApiModel<T>.fromJson(responseBody);
   }
 
-  Future<ApiModel> post<T>(String url, {Map<String, String> body}) async {
-    final token = await UserRepository().getToken();
-    print('''-----> [POST] Api Request <-----
-          url: $_baseUrl$url
-          header:
-          body: $body''');
+  Future<ApiModel> post<T>(String url, {Map<String, dynamic> body}) async {
     final request = this._httpClient.post(
           '$_baseUrl$url',
-          headers: {'X-Auth-Token': token},
-          body: body,
+          headers: await this._getHeaders(),
+          body: jsonEncode(body),
         );
+
     final response = await retry(() => request);
-    final json = jsonDecode(response.body);
-    print('''-----> [POST] Api Response <-----
-          header: ${response.headers}
-          body: $json''');
+    final responseBody = jsonDecode(response.body);
+    this._printLog(response, body: body);
 
     if (url == '/login') {
-      json['data'] = {'token': response.headers['x-auth-token']};
+      responseBody['data'] = {'token': response.headers['x-auth-token']};
     }
 
-    return ApiModel<T>.fromJson(json);
+    return ApiModel<T>.fromJson(responseBody);
   }
 }
