@@ -12,7 +12,7 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  final validator = SignUpValidator.instance;
+  final validator = SignUpValidator();
   final birthdayController = TextEditingController();
 
   @override

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 
 class LoginValidator {
-  static final instance = LoginValidator();
   static final regex = RegExp(r'^[a-zA-Z0-9]+$');
 
   final _usernameController = BehaviorSubject<String>();

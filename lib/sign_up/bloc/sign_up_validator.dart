@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 
 class SignUpValidator {
-  static final instance = SignUpValidator();
   static final _regex = RegExp(r'^\w+$');
   static final _emailRegex = RegExp(r'^\w+(.\w+)*@\w+(.\w+)+$');
 
