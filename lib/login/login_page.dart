@@ -1,11 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../auth/bloc/bloc.dart';
 import '../auth/user_repository.dart';
 import '../common/button.dart';
-import '../common/logo.dart';
-import '../common/title_text.dart';
 import '../resources/resources.dart';
 import '../sign_up/bloc/bloc.dart';
 import '../sign_up/sign_up_page.dart';
@@ -31,12 +30,13 @@ class LoginPage extends StatelessWidget {
         },
         child: Stack(
           children: <Widget>[
-            Positioned(
-              top: -screenWidth / 7,
-              right: -screenWidth / 7,
-              child: Logo(
-                size: screenWidth / 1.5,
-                color: MyColors.primary1,
+            Container(
+              width: screenWidth,
+              height: screenHeight,
+              child: Image.asset(
+                'assets/images/background.jpg',
+                fit: BoxFit.fitWidth,
+                alignment: Alignment.topCenter,
               ),
             ),
             SingleChildScrollView(
@@ -44,22 +44,40 @@ class LoginPage extends StatelessWidget {
               child: Container(
                 height: screenHeight,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(
-                        height: screenHeight > 600
-                            ? screenWidth / 1.5
-                            : screenWidth / 2),
-                    MyTitleText(text: '登入'),
+                      height: 100.0,
+                    ),
+                    Image.asset(
+                      'assets/images/logo.png',
+                      width: 100,
+                      height: 100,
+                    ),
                     SizedBox(
-                      height: 30.0,
+                      height: 32.0,
+                    ),
+                    Text(
+                      '一機在手 未雨綢繆',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 64.0,
                     ),
                     LoginForm(),
+                    SizedBox(
+                      height: 24.0,
+                    ),
                     Row(
                       children: <Widget>[
                         MyTextButton(
                           onPressed: null,
                           text: '忘記密碼',
+                          color: Colors.white,
                         ),
                         Spacer(),
                         MyTextButton(
@@ -73,6 +91,7 @@ class LoginPage extends StatelessWidget {
                             ),
                           ),
                           text: '尚未註冊',
+                          color: Colors.white,
                         ),
                       ],
                     ),

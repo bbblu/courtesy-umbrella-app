@@ -49,8 +49,8 @@ class _LoginFormState extends State<LoginForm> {
               SizedBox(
                 height: 85.0,
                 child: MyTextField(
-                  prefixIcon: Icon(Icons.person),
-                  hintText: 'account',
+                  prefixIcon: Icons.person,
+                  hintText: '帳號',
                   stream: validator.username,
                   onChanged: validator.changeUsername,
                 ),
@@ -58,8 +58,8 @@ class _LoginFormState extends State<LoginForm> {
               SizedBox(
                 height: 105.0,
                 child: MyTextField(
-                  prefixIcon: Icon(Icons.lock),
-                  hintText: 'password',
+                  prefixIcon: Icons.lock,
+                  hintText: '密碼',
                   stream: validator.password,
                   onChanged: validator.changePassword,
                   isPassword: true,

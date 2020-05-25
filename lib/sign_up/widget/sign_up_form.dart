@@ -51,35 +51,37 @@ class _SignUpFormState extends State<SignUpForm> {
       child: BlocBuilder<SignUpBloc, SignUpState>(
         builder: (context, state) {
           return Wrap(
-            runSpacing: 32.0,
+            runSpacing: 24.0,
             children: <Widget>[
               MyTextField(
-                prefixIcon: Icon(Icons.person),
-                hintText: 'account',
+                prefixIcon: Icons.person,
+                hintText: '帳號',
                 stream: validator.username,
                 onChanged: validator.changeUsername,
               ),
               MyTextField(
-                prefixIcon: Icon(Icons.lock),
-                hintText: 'password',
+                prefixIcon: Icons.lock,
+                hintText: '密碼',
                 stream: validator.password,
                 onChanged: validator.changePassword,
+                isPassword: true,
               ),
               MyTextField(
-                prefixIcon: Icon(Icons.lock),
-                hintText: 'password again',
+                prefixIcon: Icons.lock,
+                hintText: '確認密碼',
                 stream: validator.confirmPassword,
                 onChanged: validator.changeConfirmPassword,
+                isPassword: true,
               ),
               MyTextField(
-                prefixIcon: Icon(Icons.email),
-                hintText: 'email',
+                prefixIcon: Icons.email,
+                hintText: '信箱',
                 stream: validator.email,
                 onChanged: validator.changeEmail,
               ),
               MyTextField(
-                prefixIcon: Icon(Icons.cake),
-                hintText: 'birthday',
+                prefixIcon: Icons.cake,
+                hintText: '生日',
                 stream: validator.birthday,
                 isReadOnly: true,
                 controller: birthdayController,

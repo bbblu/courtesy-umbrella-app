@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyTextField extends StatefulWidget {
-  final Icon prefixIcon;
+  final IconData prefixIcon;
   final String hintText;
   final Stream<String> stream;
   final Function(String) onChanged;
@@ -44,36 +44,42 @@ class _MyTextFieldState extends State<MyTextField> {
     return StreamBuilder(
       stream: widget.stream,
       builder: (context, snapshot) {
-        return TextField(
-          decoration: InputDecoration(
-            prefixIcon: widget.prefixIcon,
-            hintText: widget.hintText,
-            errorText: snapshot.error,
-            suffixIcon: widget.isPassword
-                ? FlatButton(
-                    onPressed: _onVisibilityButtonPressed,
-                    child: Icon(
-                      _obscureText ? Icons.visibility : Icons.visibility_off,
-                    ),
-                  )
-                : null,
-            contentPadding: EdgeInsets.symmetric(vertical: 10.0),
-            filled: true,
-            fillColor: Colors.grey[300].withOpacity(0.5),
-            border: OutlineInputBorder(
-              borderSide: BorderSide(
-                width: 0,
-                style: BorderStyle.none,
+        return Theme(
+          data: ThemeData(
+            primaryColor: Colors.black,
+            primaryColorDark: Colors.black,
+            hintColor: Colors.grey,
+          ),
+          child: TextField(
+            decoration: InputDecoration(
+              prefixIcon: Padding(
+                padding: EdgeInsets.only(left: 24.0, right: 8.0),
+                child: Icon(widget.prefixIcon),
               ),
-              borderRadius: BorderRadius.all(
-                Radius.circular(5.0),
+              hintText: widget.hintText,
+              errorText: snapshot.error,
+              suffixIcon: widget.isPassword
+                  ? FlatButton(
+                      onPressed: _onVisibilityButtonPressed,
+                      child: Icon(
+                        _obscureText ? Icons.visibility : Icons.visibility_off,
+                      ),
+                    )
+                  : null,
+              contentPadding: EdgeInsets.symmetric(vertical: 16.0),
+              filled: true,
+              fillColor: Colors.white,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(50.0),
+                ),
               ),
             ),
+            onChanged: widget.onChanged,
+            readOnly: widget.isReadOnly,
+            obscureText: _obscureText,
+            controller: widget.controller,
           ),
-          onChanged: widget.onChanged,
-          readOnly: widget.isReadOnly,
-          obscureText: _obscureText,
-          controller: widget.controller,
         );
       },
     );
