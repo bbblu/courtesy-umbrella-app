@@ -6,12 +6,14 @@ class MyFlatButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
   final Stream<bool> stream;
+  final Gradient color;
 
   MyFlatButton({
     Key key,
     @required this.onPressed,
     @required this.text,
     @required this.stream,
+    this.color = MyColors.greenGradient,
   }) : super(key: key);
 
   @override
@@ -22,7 +24,7 @@ class MyFlatButton extends StatelessWidget {
         return Container(
           decoration: snapshot.hasData
               ? BoxDecoration(
-                  gradient: MyColors.greenGradient,
+                  gradient: color,
                   borderRadius: BorderRadius.circular(50.0),
                 )
               : null,
