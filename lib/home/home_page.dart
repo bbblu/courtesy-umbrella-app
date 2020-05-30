@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../borrow/borrow_page.dart';
 import '../resources/resources.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,8 +12,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _pages = [
-    Text('Index 0: Borrow'),
+  static final List<Widget> _pages = [
+    BorrowPage(),
     Text('Index 1: Return Umbrella'),
     Text('Index 2: Map'),
     Text('Index 3: Weather'),
