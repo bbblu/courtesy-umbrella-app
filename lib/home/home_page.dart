@@ -1,23 +1,106 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../auth/bloc/bloc.dart';
+import '../resources/resources.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
+  static const List<Widget> _pages = [
+    Text('Index 0: Borrow'),
+    Text('Index 1: Return Umbrella'),
+    Text('Index 2: Map'),
+    Text('Index 3: Weather'),
+    Text('Index 4: User Info'),
+  ];
+
+  static const List<String> _tiles = [
+    '借取雨傘',
+    '借傘清單',
+    '站點地圖',
+    '天氣預報',
+    '使用者資訊',
+  ];
+
+  static const List<IconData> _icons = [
+    FontAwesomeIcons.qrcode,
+    Icons.beach_access,
+    null,
+    FontAwesomeIcons.cloudSun,
+    Icons.account_circle,
+  ];
+
+  List<Widget> _tapButtons() {
+    return List.generate(_icons.length, (index) {
+      return index == 2
+          ? SizedBox(width: 50.0)
+          : IconButton(
+              onPressed: () => _onItemTapped(index),
+              icon: Icon(_icons[index]),
+              iconSize: 18.0,
+              color: _selectedIndex == index
+                  ? getThemeColor(Colors.black, Colors.white)
+                  : Colors.grey,
+            );
+    });
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
-      ),
-      body: Container(
-        child: Center(
-          child: RaisedButton(
-            child: Text('logout'),
-            onPressed: () {
-              BlocProvider.of<AuthBloc>(context).add(LoggedOut());
-            },
+        title: Padding(
+          padding: EdgeInsets.only(top: 20.0),
+          child: Text(
+            _tiles[_selectedIndex],
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              color: getThemeColor(Colors.black, Colors.white),
+            ),
           ),
+        ),
+        centerTitle: false,
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+      ),
+      body: _pages.elementAt(_selectedIndex),
+      floatingActionButton: Ink(
+        decoration: BoxDecoration(
+          gradient: MyColors.greenGradient,
+          shape: BoxShape.circle,
+        ),
+        child: FloatingActionButton(
+          onPressed: () => _onItemTapped(2),
+          child: FaIcon(FontAwesomeIcons.mapMarkedAlt,
+              color: _selectedIndex == 2
+                  ? getThemeColor(Colors.black, Colors.white)
+                  : Colors.grey),
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        color: getThemeColor(Colors.white, Colors.black),
+        clipBehavior: Clip.antiAlias,
+        elevation: 0.0,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: _tapButtons(),
         ),
       ),
     );
