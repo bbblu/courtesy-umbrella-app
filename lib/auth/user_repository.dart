@@ -2,10 +2,11 @@ import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../api/api_client.dart';
+import '../model/api_model.dart';
 import '../model/token.dart';
 
 class UserRepository {
-  Future<String> authenticate({
+  Future<ApiModel> authenticate({
     @required String username,
     @required String password,
   }) async {
@@ -14,7 +15,7 @@ class UserRepository {
       'password': password,
     });
 
-    return (response.data as Token).token;
+    return response;
   }
 
   Future<String> persistToken(String token) async {

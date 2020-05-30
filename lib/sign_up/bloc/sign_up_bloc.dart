@@ -23,7 +23,11 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           'birthday': event.birthday,
         });
 
-        yield SignUpInitial();
+        if (response.result) {
+          yield SignUpInitial();
+        } else {
+          yield SignUpFailure(error: response.message);
+        }
       } catch (error) {
         yield SignUpFailure(error: error.toString());
       }
