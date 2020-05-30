@@ -47,7 +47,7 @@ class LoginPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(
-                      height: 100.0,
+                      height: screenHeight > 600 ? 100.0 : 32.0,
                     ),
                     Image.asset(
                       'assets/images/logo.png',
