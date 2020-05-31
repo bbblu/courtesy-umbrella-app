@@ -3,6 +3,7 @@ import 'package:meta/meta.dart';
 
 import '../../common/button.dart';
 import '../../model/borrow.dart';
+import '../../qrcode/qrcode_page.dart';
 import '../../resources/resources.dart';
 
 class BorrowItem extends StatelessWidget {
@@ -53,7 +54,31 @@ class BorrowItem extends StatelessWidget {
                       ),
                     )
                   : MySmallFlatButton(
-                      onPressed: () => {},
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Scaffold(
+                            appBar: AppBar(
+                              title: Padding(
+                                padding: EdgeInsets.only(top: 20.0),
+                                child: Text(
+                                  '歸還雨傘',
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    color: getThemeColor(
+                                        Colors.black, Colors.white),
+                                  ),
+                                ),
+                              ),
+                              centerTitle: false,
+                              backgroundColor: Colors.transparent,
+                              elevation: 0.0,
+                            ),
+                            body: QRCodePage(),
+                          ),
+                        ),
+                      ),
                       color: MyColors.primary4,
                     ),
             ],
