@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../borrow/borrow_list_page.dart';
 import '../qrcode/qrcode_page.dart';
 import '../resources/resources.dart';
 
@@ -14,7 +15,7 @@ class _HomePageState extends State<HomePage> {
 
   static final List<Widget> _pages = [
     QRCodePage(),
-    Text('Index 1: Return Umbrella'),
+    BorrowListPage(),
     Text('Index 2: Map'),
     Text('Index 3: Weather'),
     Text('Index 4: User Info'),

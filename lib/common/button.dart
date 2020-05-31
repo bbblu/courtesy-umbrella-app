@@ -76,3 +76,35 @@ class MyTextButton extends StatelessWidget {
     );
   }
 }
+
+class MySmallFlatButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  final Color color;
+
+  MySmallFlatButton({
+    @required this.onPressed,
+    @required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 32.0,
+      child: FlatButton(
+        onPressed: onPressed,
+        child: Text(
+          '歸還',
+          style: TextStyle(fontSize: 24.0),
+        ),
+        color: color,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+        padding: EdgeInsets.symmetric(
+          horizontal: 32.0,
+          vertical: 0.0,
+        ),
+      ),
+    );
+  }
+}
