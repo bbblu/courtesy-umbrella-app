@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'auth/bloc/bloc.dart';
 import 'auth/user_repository.dart';
@@ -29,6 +30,16 @@ class App extends StatelessWidget {
 
   App({Key key, @required this.userRepository}) : super(key: key);
 
+  Future<void> _getPermission() async {
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.camera,
+      Permission.locationWhenInUse,
+    ].request();
+
+    print('camera permission: ${statuses[Permission.camera]}');
+    print('location permission: ${statuses[Permission.locationWhenInUse]}');
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -39,6 +50,8 @@ class App extends StatelessWidget {
           screenWidth = MediaQuery.of(context).size.width;
           screenHeight = MediaQuery.of(context).size.height;
           appBrightness = MediaQuery.of(context).platformBrightness;
+
+          _getPermission();
 
           if (state is AuthUninitialized) {
             return SplashPage();

@@ -1,22 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 import '../../common/button.dart';
 import '../bloc/bloc.dart';
 
 class QRCodeScannerPage extends StatelessWidget {
-  Future<void> getPermission(BuildContext context) async {
-    if (await Permission.camera.request().isGranted) {
-      await scan(context);
-    } else {
-      Map<Permission, PermissionStatus> statuses = await [
-        Permission.camera,
-      ].request();
-      print(statuses[Permission.camera]);
-    }
-  }
-
   Future<void> scan(BuildContext context) async {
     BlocProvider.of<QRCodeBloc>(context).add(QRCodeButtonPressed());
   }
@@ -37,7 +25,7 @@ class QRCodeScannerPage extends StatelessWidget {
           height: 50.0,
         ),
         MyTextButton(
-          onPressed: () => getPermission(context),
+          onPressed: () => scan(context),
           text: '請掃描傘架上的 QRCode',
           color: Colors.black,
         ),
