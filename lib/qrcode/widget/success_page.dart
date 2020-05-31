@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../borrow/bloc/bloc.dart';
-import '../../borrow/bloc/borrow_event.dart';
 import '../../common/button.dart';
+import '../../qrcode/bloc/bloc.dart';
+import '../../qrcode/bloc/qrcode_event.dart';
 import '../../resources/resources.dart';
 
-class BorrowSuccessPage extends StatelessWidget {
+class QRCodeSuccessPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,13 +23,13 @@ class BorrowSuccessPage extends StatelessWidget {
           ),
           SizedBox(height: 40.0),
           Image.asset(
-            'assets/images/borrow_success.png',
+            'assets/images/qrcode_success.png',
             height: 235.0,
           ),
           SizedBox(height: 40.0),
           MyFlatButton(
             onPressed: () =>
-                BlocProvider.of<BorrowBloc>(context).add(CloseButtonPressed()),
+                BlocProvider.of<QRCodeBloc>(context).add(CloseButtonPressed()),
             stream: Stream.value(true),
             text: '關閉',
           ),

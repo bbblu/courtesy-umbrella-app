@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../borrow/borrow_page.dart';
+import '../qrcode/qrcode_page.dart';
 import '../resources/resources.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,7 +13,7 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
   static final List<Widget> _pages = [
-    BorrowPage(),
+    QRCodePage(),
     Text('Index 1: Return Umbrella'),
     Text('Index 2: Map'),
     Text('Index 3: Weather'),

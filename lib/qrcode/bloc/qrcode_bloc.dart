@@ -1,17 +1,17 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
-import 'borrow_event.dart';
-import 'borrow_state.dart';
+import 'qrcode_event.dart';
+import 'qrcode_state.dart';
 
-class BorrowBloc extends Bloc<BorrowEvent, BorrowState> {
+class QRCodeBloc extends Bloc<QRCodeEvent, QRCodeState> {
   @override
-  BorrowState get initialState => BorrowInitial();
+  QRCodeState get initialState => QRCodeInitial();
 
   @override
-  Stream<BorrowState> mapEventToState(BorrowEvent event) async* {
+  Stream<QRCodeState> mapEventToState(QRCodeEvent event) async* {
     if (event is QRCodeButtonPressed || event is RetryButtonPressed) {
-      yield BorrowLoading();
+      yield QRCodeLoading();
 
       try {
         String qrCodeUrl = await FlutterBarcodeScanner.scanBarcode(
@@ -23,17 +23,17 @@ class BorrowBloc extends Bloc<BorrowEvent, BorrowState> {
         print('QRCode: $qrCodeUrl');
 
         if (qrCodeUrl != '-1') {
-          yield BorrowSuccess();
+          yield QRCodeSuccess();
         } else {
-          yield BorrowFailure(error: '上次雨傘尚未歸還');
+          yield QRCodeFailure(error: '上次雨傘尚未歸還');
         }
       } catch (error) {
-        yield BorrowFailure(error: error.toString());
+        yield QRCodeFailure(error: error.toString());
       }
     }
 
     if (event is CloseButtonPressed) {
-      yield BorrowInitial();
+      yield QRCodeInitial();
     }
   }
 }

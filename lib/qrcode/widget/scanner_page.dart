@@ -18,7 +18,7 @@ class QRCodeScannerPage extends StatelessWidget {
   }
 
   Future<void> scan(BuildContext context) async {
-    BlocProvider.of<BorrowBloc>(context).add(QRCodeButtonPressed());
+    BlocProvider.of<QRCodeBloc>(context).add(QRCodeButtonPressed());
   }
 
   @override

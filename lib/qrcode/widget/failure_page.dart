@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../borrow/bloc/bloc.dart';
-import '../../borrow/bloc/borrow_event.dart';
 import '../../common/button.dart';
+import '../../qrcode/bloc/bloc.dart';
+import '../../qrcode/bloc/qrcode_event.dart';
 import '../../resources/resources.dart';
 
-class BorrowFailurePage extends StatelessWidget {
+class QRCodeFailurePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,16 +27,16 @@ class BorrowFailurePage extends StatelessWidget {
             height: 125.0,
           ),
           SizedBox(height: 50.0),
-          BlocBuilder<BorrowBloc, BorrowState>(builder: (context, state) {
+          BlocBuilder<QRCodeBloc, QRCodeState>(builder: (context, state) {
             return Text(
-              (state as BorrowFailure).error,
+              (state as QRCodeFailure).error,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             );
           }),
           SizedBox(height: 50.0),
           MyFlatButton(
             onPressed: () =>
-                BlocProvider.of<BorrowBloc>(context).add(RetryButtonPressed()),
+                BlocProvider.of<QRCodeBloc>(context).add(RetryButtonPressed()),
             text: '重新嘗試',
             stream: Stream.value(true),
             color: MyColors.redGradient,

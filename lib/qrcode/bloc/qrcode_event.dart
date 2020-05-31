@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
-abstract class BorrowEvent extends Equatable {
-  const BorrowEvent();
+abstract class QRCodeEvent extends Equatable {
+  const QRCodeEvent();
 }
 
-class QRCodeButtonPressed extends BorrowEvent {
+class QRCodeButtonPressed extends QRCodeEvent {
   @override
   List<Object> get props => [];
 
@@ -12,7 +12,7 @@ class QRCodeButtonPressed extends BorrowEvent {
   String toString() => 'QrCodeButtonPressed {  }';
 }
 
-class CloseButtonPressed extends BorrowEvent {
+class CloseButtonPressed extends QRCodeEvent {
   @override
   List<Object> get props => [];
 
@@ -20,7 +20,7 @@ class CloseButtonPressed extends BorrowEvent {
   String toString() => 'CloseButtonPressed {  }';
 }
 
-class RetryButtonPressed extends BorrowEvent {
+class RetryButtonPressed extends QRCodeEvent {
   @override
   List<Object> get props => [];
 
