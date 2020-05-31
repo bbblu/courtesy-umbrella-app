@@ -79,6 +79,7 @@ class BorrowItem extends StatelessWidget {
                           ),
                         ),
                       ),
+                      text: '歸還',
                       color: MyColors.primary4,
                     ),
             ],

@@ -5,6 +5,7 @@ import '../borrow/borrow_list_page.dart';
 import '../map/map_page.dart';
 import '../qrcode/qrcode_page.dart';
 import '../resources/resources.dart';
+import '../user_info/user_info_page.dart';
 import '../weather/weather_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
     BorrowListPage(),
     MapPage(),
     WeatherPage(),
-    Text('Index 4: User Info'),
+    UserInfoPage(),
   ];
 
   static const List<String> _tiles = [

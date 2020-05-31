@@ -79,10 +79,12 @@ class MyTextButton extends StatelessWidget {
 
 class MySmallFlatButton extends StatelessWidget {
   final VoidCallback onPressed;
+  final String text;
   final Color color;
 
   MySmallFlatButton({
     @required this.onPressed,
+    @required this.text,
     @required this.color,
   });
 
@@ -93,15 +95,15 @@ class MySmallFlatButton extends StatelessWidget {
       child: FlatButton(
         onPressed: onPressed,
         child: Text(
-          '歸還',
-          style: TextStyle(fontSize: 24.0),
+          text,
+          style: TextStyle(fontSize: 20.0),
         ),
         color: color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.0),
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: 32.0,
+          horizontal: 16.0,
           vertical: 0.0,
         ),
       ),
