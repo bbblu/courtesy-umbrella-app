@@ -27,11 +27,15 @@ class MapPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 24.0,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                     Text(
                       '${_data.distance.toInt()} 公尺',
-                      style: TextStyle(fontSize: 16.0),
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        color: Colors.white,
+                      ),
                     ),
                   ],
                 ),
@@ -40,12 +44,14 @@ class MapPage extends StatelessWidget {
                     Icon(
                       Icons.beach_access,
                       size: 40.0,
+                      color: Colors.white,
                     ),
                     SizedBox(width: 16.0),
                     Text(
                       '${_data.remainCount} / ${_data.totalCount} 把',
                       style: TextStyle(
                         fontSize: 30.0,
+                        color: Colors.white,
                       ),
                     ),
                   ],

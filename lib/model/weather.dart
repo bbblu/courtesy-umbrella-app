@@ -24,6 +24,7 @@ class Weather extends Equatable {
   final String created;
   final DateTime lastUpdated;
   final String location;
+  final int humidity;
 
   const Weather({
     this.condition,
@@ -35,6 +36,7 @@ class Weather extends Equatable {
     this.created,
     this.lastUpdated,
     this.location,
+    this.humidity,
   });
 
   @override
@@ -48,6 +50,7 @@ class Weather extends Equatable {
         created,
         lastUpdated,
         location,
+        humidity,
       ];
 
   static Weather fromJson(dynamic json) {
@@ -63,6 +66,7 @@ class Weather extends Equatable {
       created: consolidatedWeather['created'],
       lastUpdated: DateTime.now(),
       location: json['title'],
+      humidity: consolidatedWeather['humidity'],
     );
   }
 

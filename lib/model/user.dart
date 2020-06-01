@@ -36,4 +36,11 @@ class User extends Equatable {
         'email': email,
         'birthday': birthday,
       };
+
+  static User fakeUser = User(
+    account: 'john0224',
+    password: '',
+    email: 'john0224@gmail.com',
+    birthday: DateTime.now().toString().split(' ').first,
+  );
 }

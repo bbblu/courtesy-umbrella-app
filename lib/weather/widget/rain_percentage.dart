@@ -19,6 +19,7 @@ class RainPercentage extends StatelessWidget {
             style: TextStyle(
               fontSize: 24.0,
               fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
           ),
           Divider(
@@ -26,14 +27,15 @@ class RainPercentage extends StatelessWidget {
             color: Colors.white,
           ),
           Text(
-            '90%',
+            '${weather.humidity} %',
             style: TextStyle(
               fontSize: 70.0,
+              color: Colors.white,
             ),
           ),
         ],
       ),
-      padding: EdgeInsets.fromLTRB(5.0, 8.0, 5.0, 16.0),
+      padding: EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         gradient: MyColors.greenGradient,
         borderRadius: BorderRadius.all(Radius.circular(5.0)),

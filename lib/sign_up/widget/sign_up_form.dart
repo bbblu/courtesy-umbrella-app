@@ -51,7 +51,7 @@ class _SignUpFormState extends State<SignUpForm> {
       child: BlocBuilder<SignUpBloc, SignUpState>(
         builder: (context, state) {
           return Wrap(
-            runSpacing: 24.0,
+            runSpacing: 16.0,
             children: <Widget>[
               MyTextField(
                 prefixIcon: Icons.person,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../common/button.dart';
+import '../../resources/resources.dart';
 import '../bloc/bloc.dart';
 
 class QRCodeScannerPage extends StatelessWidget {
@@ -14,15 +15,17 @@ class QRCodeScannerPage extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Container(
-          width: 300.0,
-          height: 300.0,
-          decoration: BoxDecoration(
-            border: Border.all(),
+        AspectRatio(
+          aspectRatio: 1,
+          child: Container(
+            margin: EdgeInsets.all(32.0),
+            decoration: BoxDecoration(
+              border: Border.all(),
+            ),
           ),
         ),
         SizedBox(
-          height: 50.0,
+          height: screenWidth / 25,
         ),
         MyTextButton(
           onPressed: () => scan(context),

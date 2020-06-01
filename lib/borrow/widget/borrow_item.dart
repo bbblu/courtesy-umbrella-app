@@ -40,7 +40,7 @@ class BorrowItem extends StatelessWidget {
               Text(
                 data.returnDate.toString().substring(0, 16),
                 style: TextStyle(
-                  fontSize: 24.0,
+                  fontSize: screenWidth / 18,
                   fontWeight: FontWeight.bold,
                   color: data.isReturn ? Colors.black : Colors.white,
                 ),
@@ -49,7 +49,7 @@ class BorrowItem extends StatelessWidget {
                   ? Text(
                       data.borrowDate.toString().substring(0, 16),
                       style: TextStyle(
-                        fontSize: 20.0,
+                        fontSize: screenWidth / 20,
                         color: data.isReturn ? Colors.black : Colors.white,
                       ),
                     )

@@ -39,64 +39,54 @@ class LoginPage extends StatelessWidget {
                 alignment: Alignment.topCenter,
               ),
             ),
-            SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: 32.0),
-              child: Container(
-                height: screenHeight,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      height: screenHeight > 600 ? 100.0 : 32.0,
+            Container(
+              height: 600.0,
+              margin: EdgeInsets.symmetric(horizontal: 32.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Spacer(flex: 3),
+                  Image.asset(
+                    'assets/images/logo.png',
+                    width: 100,
+                    height: 100,
+                  ),
+                  Spacer(),
+                  Text(
+                    '一機在手 未雨綢繆',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold,
                     ),
-                    Image.asset(
-                      'assets/images/logo.png',
-                      width: 100,
-                      height: 100,
-                    ),
-                    SizedBox(
-                      height: 32.0,
-                    ),
-                    Text(
-                      '一機在手 未雨綢繆',
-                      style: TextStyle(
+                  ),
+                  Spacer(flex: 2),
+                  LoginForm(),
+                  Spacer(),
+                  Row(
+                    children: <Widget>[
+                      MyTextButton(
+                        onPressed: null,
+                        text: '忘記密碼',
                         color: Colors.white,
-                        fontSize: 30.0,
-                        fontWeight: FontWeight.bold,
                       ),
-                    ),
-                    SizedBox(
-                      height: 64.0,
-                    ),
-                    LoginForm(),
-                    SizedBox(
-                      height: 24.0,
-                    ),
-                    Row(
-                      children: <Widget>[
-                        MyTextButton(
-                          onPressed: null,
-                          text: '忘記密碼',
-                          color: Colors.white,
-                        ),
-                        Spacer(),
-                        MyTextButton(
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => BlocProvider(
-                                create: (context) => SignUpBloc(),
-                                child: SignUpPage(),
-                              ),
+                      Spacer(),
+                      MyTextButton(
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BlocProvider(
+                              create: (context) => SignUpBloc(),
+                              child: SignUpPage(),
                             ),
                           ),
-                          text: '尚未註冊',
-                          color: Colors.white,
                         ),
-                      ],
-                    ),
-                  ],
-                ),
+                        text: '尚未註冊',
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],

@@ -46,25 +46,21 @@ class _LoginFormState extends State<LoginForm> {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
-                height: 85.0,
-                child: MyTextField(
-                  prefixIcon: Icons.person,
-                  hintText: '帳號',
-                  stream: validator.username,
-                  onChanged: validator.changeUsername,
-                ),
+              MyTextField(
+                prefixIcon: Icons.person,
+                hintText: '帳號',
+                stream: validator.username,
+                onChanged: validator.changeUsername,
               ),
-              SizedBox(
-                height: 105.0,
-                child: MyTextField(
-                  prefixIcon: Icons.lock,
-                  hintText: '密碼',
-                  stream: validator.password,
-                  onChanged: validator.changePassword,
-                  isPassword: true,
-                ),
+              SizedBox(height: 16.0),
+              MyTextField(
+                prefixIcon: Icons.lock,
+                hintText: '密碼',
+                stream: validator.password,
+                onChanged: validator.changePassword,
+                isPassword: true,
               ),
+              SizedBox(height: 64.0),
               MyFlatButton(
                 onPressed:
                     state is! LoginLoading ? _onLoginButtonPressed : null,

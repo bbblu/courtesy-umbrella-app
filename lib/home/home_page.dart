@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
           : IconButton(
               onPressed: () => _onItemTapped(index),
               icon: Icon(_icons[index]),
-              iconSize: 18.0,
+              iconSize: 20.0,
               color: _selectedIndex == index
                   ? getThemeColor(Colors.black, Colors.white)
                   : Colors.grey,

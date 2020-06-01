@@ -96,7 +96,10 @@ class MySmallFlatButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text,
-          style: TextStyle(fontSize: 20.0),
+          style: TextStyle(
+            fontSize: 20.0,
+            color: Colors.white,
+          ),
         ),
         color: color,
         shape: RoundedRectangleBorder(

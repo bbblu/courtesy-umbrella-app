@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 
 import '../api/weather_api_client.dart';
 import '../api/weather_repository.dart';
-import '../common/button.dart';
 import 'bloc/bloc.dart';
 import 'widget/widget.dart';
 
@@ -29,21 +28,22 @@ class WeatherPage extends StatelessWidget {
         child: BlocBuilder<WeatherBloc, WeatherState>(
           builder: (context, state) {
             if (state is WeatherEmpty) {
-              return Center(
-                child: MyTextButton(
-                  onPressed: () async {
-                    final Position position = await _getPosition();
-
+              return FutureBuilder<Position>(
+                future: _getPosition(),
+                builder:
+                    (BuildContext context, AsyncSnapshot<Position> snapshot) {
+                  if (snapshot.hasData) {
+                    final position = snapshot.data;
                     BlocProvider.of<WeatherBloc>(context).add(
                       FetchWeather(
                         lat: position.latitude,
                         long: position.longitude,
                       ),
                     );
-                  },
-                  text: '請開啟定位功能及權限',
-                  color: Colors.black,
-                ),
+                  }
+
+                  return Center(child: Text('請開啟定位功能及權限'));
+                },
               );
             }
 
@@ -65,16 +65,14 @@ class WeatherPage extends StatelessWidget {
                     ),
                   );
                 },
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 32.0,
-                    horizontal: 16.0,
-                  ),
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 32.0),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       RainPercentage(weather: weather),
+                      SizedBox(height: 32.0),
                       WeatherInfo(weather: weather),
+                      SizedBox(height: 32.0),
                       TomorrowRainPercentage(weather: weather),
                     ],
                   ),

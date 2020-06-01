@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 import '../../model/weather.dart';
+import '../../resources/resources.dart';
 
 class WeatherInfo extends StatelessWidget {
   final Weather weather;
@@ -48,16 +49,16 @@ class WeatherInfo extends StatelessWidget {
           ),
           Image.asset(
             'assets/images/$condition.png',
-            width: 125.0,
+            width: screenWidth / 4,
             fit: BoxFit.fitWidth,
             alignment: AlignmentDirectional.center,
           )
         ],
       ),
-      height: 350.0,
+      height: screenHeight / 2.5,
       padding: EdgeInsets.symmetric(
-        vertical: 48.0,
-        horizontal: 32.0,
+        vertical: screenHeight / 20,
+        horizontal: screenHeight / 25,
       ),
       decoration: BoxDecoration(
         border: Border.all(width: 1.0),

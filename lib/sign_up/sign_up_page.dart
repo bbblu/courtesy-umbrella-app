@@ -9,7 +9,7 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(200.0),
+        preferredSize: Size.fromHeight(screenWidth / 2),
         child: AppBar(
           automaticallyImplyLeading: false,
           flexibleSpace: Container(
