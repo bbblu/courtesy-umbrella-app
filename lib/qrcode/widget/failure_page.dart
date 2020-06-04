@@ -13,7 +13,7 @@ class QRCodeFailurePage extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 32.0),
       child: Column(
         children: [
-          SizedBox(height: 40.0),
+          Spacer(),
           Text(
             '失敗',
             style: TextStyle(
@@ -21,19 +21,19 @@ class QRCodeFailurePage extends StatelessWidget {
               color: MyColors.primary4,
             ),
           ),
-          SizedBox(height: 40.0),
+          Spacer(),
           Image.asset(
             'assets/images/failure.png',
             height: 125.0,
           ),
-          SizedBox(height: 50.0),
+          Spacer(flex: 2),
           BlocBuilder<QRCodeBloc, QRCodeState>(builder: (context, state) {
             return Text(
               (state as QRCodeFailure).error,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             );
           }),
-          SizedBox(height: 50.0),
+          Spacer(),
           MyFlatButton(
             onPressed: () =>
                 BlocProvider.of<QRCodeBloc>(context).add(RetryButtonPressed()),
@@ -41,6 +41,7 @@ class QRCodeFailurePage extends StatelessWidget {
             stream: Stream.value(true),
             color: MyColors.redGradient,
           ),
+          Spacer(flex: 2),
         ],
       ),
     );

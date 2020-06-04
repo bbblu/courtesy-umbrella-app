@@ -25,7 +25,7 @@ class QRCodeBloc extends Bloc<QRCodeEvent, QRCodeState> {
         if (qrCodeUrl != '-1') {
           yield QRCodeSuccess();
         } else {
-          yield QRCodeFailure(error: '上次雨傘尚未歸還');
+          yield QRCodeFailure(error: '掃描失敗');
         }
       } catch (error) {
         yield QRCodeFailure(error: error.toString());

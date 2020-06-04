@@ -13,7 +13,7 @@ class QRCodeSuccessPage extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 32.0),
       child: Column(
         children: [
-          SizedBox(height: 40.0),
+          Spacer(),
           Text(
             '成功',
             style: TextStyle(
@@ -21,18 +21,19 @@ class QRCodeSuccessPage extends StatelessWidget {
               color: MyColors.primary1,
             ),
           ),
-          SizedBox(height: 40.0),
+          Spacer(),
           Image.asset(
-            'assets/images/qrcode_success.png',
+            'assets/images/borrow_success.png',
             height: 235.0,
           ),
-          SizedBox(height: 40.0),
+          Spacer(flex: 2),
           MyFlatButton(
             onPressed: () =>
                 BlocProvider.of<QRCodeBloc>(context).add(CloseButtonPressed()),
             stream: Stream.value(true),
             text: '關閉',
           ),
+          Spacer(flex: 2),
         ],
       ),
     );

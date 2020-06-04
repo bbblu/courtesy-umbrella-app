@@ -56,8 +56,9 @@ class UserInfo extends StatelessWidget {
                               ),
                             ),
                             MySmallFlatButton(
-                              onPressed: () => BlocProvider.of<AuthBloc>(context)
-                                  .add(LoggedOut()),
+                              onPressed: () =>
+                                  BlocProvider.of<AuthBloc>(context)
+                                      .add(LoggedOut()),
                               text: '登出',
                               color: MyColors.primary2,
                             )
