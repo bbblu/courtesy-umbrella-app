@@ -81,7 +81,7 @@ class UserInfo extends StatelessWidget {
             ),
             Container(
               child: Text(
-                '違規次數: 1 / 5',
+                '違規次數: ${user.violationTimes} / 5',
                 style: TextStyle(
                   fontSize: 20.0,
                   color: Colors.white,
@@ -90,7 +90,8 @@ class UserInfo extends StatelessWidget {
               width: double.infinity,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: MyColors.primary4,
+                color:
+                    user.violationTimes > 0 ? MyColors.primary4 : Colors.grey,
                 borderRadius: BorderRadius.circular(5.0),
               ),
             )

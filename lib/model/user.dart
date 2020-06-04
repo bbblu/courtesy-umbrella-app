@@ -5,12 +5,14 @@ class User extends Equatable {
   final String password;
   final String email;
   final String birthday;
+  final int violationTimes;
 
   const User({
     this.account,
     this.password,
     this.email,
     this.birthday,
+    this.violationTimes,
   });
 
   @override
@@ -19,6 +21,7 @@ class User extends Equatable {
         password,
         email,
         birthday,
+        violationTimes,
       ];
 
   factory User.fromJson(dynamic json) {
@@ -27,6 +30,7 @@ class User extends Equatable {
       password: json['password'],
       email: json['email'],
       birthday: json['birthday'],
+      violationTimes: json['violationTimes'],
     );
   }
 
@@ -35,12 +39,14 @@ class User extends Equatable {
         'password': password,
         'email': email,
         'birthday': birthday,
+        'violationTimes': violationTimes,
       };
 
   static User fakeUser = User(
     account: 'john0224',
     password: '',
     email: 'john0224@gmail.com',
-    birthday: DateTime.now().toString().split(' ').first,
+    birthday: '2005-05-25',
+    violationTimes: 0,
   );
 }

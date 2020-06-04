@@ -27,7 +27,7 @@ class RainPercentage extends StatelessWidget {
             color: Colors.white,
           ),
           Text(
-            '${weather.humidity} %',
+            '80 %',
             style: TextStyle(
               fontSize: 70.0,
               color: Colors.white,

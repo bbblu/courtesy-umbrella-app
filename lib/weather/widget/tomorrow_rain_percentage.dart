@@ -22,7 +22,7 @@ class TomorrowRainPercentage extends StatelessWidget {
             ),
           ),
           Text(
-            '降雨機率 80%',
+            '降雨機率 50 %',
             style: TextStyle(
               fontSize: 24.0,
               fontWeight: FontWeight.bold,
