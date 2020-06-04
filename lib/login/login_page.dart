@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../auth/bloc/bloc.dart';
 import '../auth/user_repository.dart';
 import '../common/button.dart';
+import '../forget_password/bloc/bloc.dart';
+import '../forget_password/forget_password_page.dart';
 import '../resources/resources.dart';
 import '../sign_up/bloc/bloc.dart';
 import '../sign_up/sign_up_page.dart';
@@ -66,7 +68,15 @@ class LoginPage extends StatelessWidget {
                   Row(
                     children: <Widget>[
                       MyTextButton(
-                        onPressed: null,
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BlocProvider(
+                              create: (context) => ForgetPasswordBloc(),
+                              child: ForgetPasswordPage(),
+                            ),
+                          ),
+                        ),
                         text: '忘記密碼',
                         color: Colors.white,
                       ),

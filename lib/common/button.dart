@@ -53,6 +53,31 @@ class MyFlatButton extends StatelessWidget {
   }
 }
 
+class BackFlatButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: FlatButton(
+        onPressed: () => Navigator.pop(context, true),
+        child: Text(
+          '返回',
+          style: TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50.0),
+        ),
+        padding: EdgeInsets.symmetric(vertical: 8.0),
+        color: MyColors.primary2,
+      ),
+    );
+  }
+}
+
 class MyTextButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
